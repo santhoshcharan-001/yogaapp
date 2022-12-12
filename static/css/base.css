@@ -1,0 +1,38 @@
+body {
+    background-color: #4c0bce;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #fff;
+}
+
+.my-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.alert {
+    width: 100%;
+}
+
+.alert-success {
+    background-color: #28a745;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 0;
+}
+
+.alert-error {
+    background-color: #dc3545;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 0;
+}

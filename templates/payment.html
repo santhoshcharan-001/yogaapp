@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/payment.css' %}">    
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <label for="batch" class="form-label">Batch<span class="red">*<span></label>
+        <select name="batch" id="batch" class="form-select" required>
+            
+            {% for batch in batches %}
+                {% if forloop.counter0 == 0 %}
+                    <option value="{{ batch.id }}" selected>{{ batch }}</option>
+                {% else %}
+                    <option value="{{ batch.id }}">{{ batch }}</option>
+                {% endif %}
+                
+            {% endfor %}
+                
+        </select>
+
+        <label for="cardNumber" class="form-label mt-3" >Card Number<span class="red">*<span></label>
+        <input type="text" name="card_number" id="cardNumber" placeholder="1234567890123456" class="form-control" required>
+        <label for="cardName" class="form-label mt-3">Name on Card<span class="red">*<span></label>
+        <input type="text" name="card_name" id="cardName" placeholder="John Doe" class="form-control" required>
+        <div class="grid_1_1 mt-3">
+            <div>
+                <label for="cardExpiry" class="form-label">Expiry Date<span class="red">*<span></label>
+                <input type="text" name="card_expiry" id="cardExpiry" placeholder="MM/YY" class="form-control" required>
+            </div>
+            <div>
+                <label for="cardCVC" class="form-label">CVV<span class="red">*<span></label>
+                <input type="text" name="card_cvv" id="cardCVC" placeholder="123" class="form-control" required>
+            </div>
+        </div>
+        <button type="submit" class="mt-3 btn btn-warning">Make Payment</button>   
+    </form>
+    
+    <script>
+        // Allow only numbers in the fields
+        document.getElementById("cardNumber").addEventListener("keydown", function (e) {
+            // add max length check
+            if(this.value.length >= 16 && e.keyCode != 8) {
+                e.preventDefault();
+            }
+            if ([46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||
+                (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                (e.keyCode === 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                (e.keyCode === 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+        document.getElementById("cardCVC").addEventListener("keydown", function (e) {
+            if(this.value.length >= 3 && e.keyCode != 8) {
+                e.preventDefault();
+            }
+            if ([46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||
+                (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                (e.keyCode === 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                (e.keyCode === 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+        document.getElementById("cardExpiry").addEventListener("keydown", function (e) {
+            if(this.value.length >= 5 && e.keyCode != 8) {
+                e.preventDefault();
+            }
+            if (e.keyCode == 111) {
+                return;
+            }
+            if ([46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||
+                (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                (e.keyCode === 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                (e.keyCode === 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    </script>
+        
+{% endblock content %}

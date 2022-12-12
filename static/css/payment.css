@@ -1,0 +1,27 @@
+form {
+    width: 400px;
+}
+
+.signup {
+    text-decoration: none;
+    color: #fff;
+    text-shadow: 0 1px 5px #fff;
+    cursor: pointer;
+}
+
+.signup:hover {
+    text-decoration: none;
+    color: #fff;
+    text-shadow: 0 1px 10px #fff;
+    cursor: pointer;
+}
+
+.red {
+    color: #dc3545;
+}
+
+.grid_1_1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+}
